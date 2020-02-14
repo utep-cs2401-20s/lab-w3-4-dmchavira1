@@ -27,14 +27,46 @@ public class TorusGameOfLife extends GameOfLife {
     @Override
     public int neighbors(int r, int c) {
         int count = 0;
-        if (Board[(r - 1) % Size][(c - 1) % Size] == 1) {
+        //torus top
+        if (Board[(r - 1) % Size][(c) % Size] == 1) {
             count++;
         }
-        if (Board[(r - 1) % Size][(c - 1) % Size] == 1) {
+        //torus bottom
+        if (Board[(r + 1) % Size][(c) % Size] == 1) {
+            count++;
+        }
+        //torus left
+        if(Board[(r) % Size][(c - 1) % Size]==1){
+            count++;
+        }
+        //torus Right
+        if(Board[(r)% Size][(c - 1) % Size]==1){
+            count++;
+        }
+        // torus top left
+        if(Board[(r - 1) % Size][(c - 1) % Size]==1){
+            count++;
+        }
+        // torus top right
+        if(Board[(r - 1) % Size][(c + 1) % Size]==1){
+            count++;
+        }
+        //torus bottom left
+        if(Board[(r - 1)% Size][(c + 1) % Size]==1){
+            count++;
+        }
+        // torus bottom right
+        if(Board[(r + 1) % Size][(c - 1) % Size]==1){
             count++;
         }
 
         return count;
     }
+    void evolution(int n){
 
+    }
+
+    public void printBoard() {
+        super.printBoard();
+    }
 }

@@ -7,10 +7,10 @@ public class GoLTester {
                 {0, 0, 0},
                 {1, 1, 1},
                 {0, 0, 0}};
-        int B = 1;
+        int B = 3;
 
         GameOfLife x = new GameOfLife(A);
-        assertEquals(B, x.neighbors(0, 1));
+        assertEquals(B, x.neighbors(0, 0));
     }
     @Test
     public void neighbors2() {
@@ -21,10 +21,10 @@ public class GoLTester {
                 {0, 1, 1, 1, 0, 0,},
                 {0, 0, 0, 0, 0, 0,},
                 {0, 0, 0, 0, 0, 0,}};
-        int B = 1;
+        int B = 4;
 
         GameOfLife x = new GameOfLife(A);
-        assertEquals(B, x.neighbors(1, 1));
+        assertEquals(B, x.neighbors(3, 3));
     }
     @Test
     public void neighbors3() {
@@ -72,6 +72,22 @@ public class GoLTester {
         int[][] B = {
                 {0, 0, 0,},
                 {0, 0, 0,},
+                {0, 0, 0,},
+        };
+        GameOfLife x= new GameOfLife(A);
+        x.oneStep();
+        assertArrayEquals(B, x.getBoard());
+    }
+    @Test
+    public void oneStep2() {
+        int[][] A = {
+                {0, 1, 0,},
+                {0, 1, 0,},
+                {0, 1, 0,},
+        };
+        int[][] B = {
+                {0, 0, 0,},
+                {1, 1, 1,},
                 {0, 0, 0,},
         };
         GameOfLife x= new GameOfLife(A);

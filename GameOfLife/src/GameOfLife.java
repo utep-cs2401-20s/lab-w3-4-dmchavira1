@@ -63,6 +63,7 @@ public class GameOfLife {
         int count = 0;
         //top
         if(((c)>=0) && (c < Size)&&((r-1) >= 0 && (r-1) < Size && Board[r-1][c]==1)){
+
             count++;
         }
         //top left
@@ -82,7 +83,7 @@ public class GameOfLife {
             count++;
         }
         // bottom Left
-        if(((c+1)>=0) && ((c+1 )< Size)&&((r-1) >= 0 && (r-1) < Size && Board[r-1][c+1]==1)){
+        if(((c+1)>=0) && ((c+1 )< Size)&&((r+1) >= 0 && (r+1) < Size && Board[r+1][c+1]==1)){
             count++;
         }
         //bottom Right
@@ -90,7 +91,7 @@ public class GameOfLife {
             count++;
         }
         //bottom
-        if(((c)>=0) && ((c)< Size)&&((r+1) >= 0 && (r+1)< Size && Board[r+1][c+1]==1)){
+        if(((c)>=0) && ((c)< Size)&&((r+1) >= 0 && (r+1)< Size && Board[r+1][c]==1)){
             count++;
         }
         return count;

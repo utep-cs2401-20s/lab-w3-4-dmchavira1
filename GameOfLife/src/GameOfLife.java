@@ -17,7 +17,7 @@ public class GameOfLife {
 
     //Third constructor
     public GameOfLife(int [][] x) {
-        this.Size = x.length;
+        Size = x.length;
         Board = x;
         previous = new int[Size][Size];
         for (int i = 0; i < x.length; i++) {
@@ -33,27 +33,30 @@ public class GameOfLife {
 
 
 
-    public void oneStep(){
-        if (Board == null || Board.length == 0)
-            return;
+    public void oneStep() {
         for (int i = 0; i < Board.length; i++) {
             for (int j = 0; j < Board[i].length; j++) {
-                if (Board[i][j] == 1) {
-                    if (neighbors(i ,j) < 2) {
-                        this.Board[i][j] = 0;
+                if (previous[i][j] == 1) {
+                    if (neighbors(i, j) < 2) {
+                        Board[i][j] = 0;
                     }
                     if (neighbors(i, j) == 2 || neighbors(i, j) == 3) {
-                        this.Board[i][j] = 1;
+                        Board[i][j] = 1;
                     }
                     if (neighbors(i, j) > 3) {
-                        this.Board[i][j] = 0;
+                        Board[i][j] = 0;
                     }
                 }
-                if (Board[i][j] == 0) {
+                if (previous[i][j] == 0) {
                     if (neighbors(i, j) == 3) {
-                        this.Board[i][j] = 1;
+                        Board[i][j] = 1;
                     }
                 }
+            }
+        }
+        for (int i = 0; i < Board.length; i++) {
+            for (int j = 0; j < Board[i].length; j++) {
+                previous[i][j] = Board[i][j];
             }
         }
 
@@ -62,36 +65,36 @@ public class GameOfLife {
     public int neighbors(int r, int c) {
         int count = 0;
         //top
-        if(((c)>=0) && (c < Size)&&((r-1) >= 0 && (r-1) < Size && Board[r-1][c]==1)){
+        if(((c)>=0) && (c < Size)&&((r-1) >= 0 && (r-1) < Size && previous[r-1][c]==1)){
 
             count++;
         }
         //top left
-        if(((c - 1) >=0) && ((c - 1) < Size)&&((r-1) >= 0 && (r-1) < Size && Board[r-1][c-1]==1)){
+        if(((c - 1) >=0) && ((c - 1) < Size)&&((r-1) >= 0 && (r-1) < Size && previous[r-1][c-1]==1)){
             count++;
         }
         //top Right
-        if(((c+1)>=0) && ((c+1) < Size)&&((r-1) >= 0 && (r-1) < Size && Board[r-1][c+1]==1)){
+        if(((c+1)>=0) && ((c+1) < Size)&&((r-1) >= 0 && (r-1) < Size && previous[r-1][c+1]==1)){
             count++;
         }
         // Right
-        if(((c+1)>=0) && ((c+1) < Size)&&((r) >= 0 && (r) < Size && Board[r][c+1]==1)){
+        if(((c+1)>=0) && ((c+1) < Size)&&((r) >= 0 && (r) < Size && previous[r][c+1]==1)){
             count++;
         }
         //Left
-        if(((c-1)>=0) && ((c-1 )< Size)&&((r) >= 0 && (r) < Size && Board[r][c-1]==1)){
+        if(((c-1)>=0) && ((c-1 )< Size)&&((r) >= 0 && (r) < Size && previous[r][c-1]==1)){
             count++;
         }
         // bottom Left
-        if(((c+1)>=0) && ((c+1 )< Size)&&((r+1) >= 0 && (r+1) < Size && Board[r+1][c+1]==1)){
+        if(((c+1)>=0) && ((c+1 )< Size)&&((r+1) >= 0 && (r+1) < Size && previous[r+1][c+1]==1)){
             count++;
         }
         //bottom Right
-        if(((c+1)>=0) && ((c+1 )< Size)&&((r+1) >= 0 && (r+1)< Size && Board[r+1][c+1]==1)){
+        if(((c+1)>=0) && ((c+1 )< Size)&&((r+1) >= 0 && (r+1)< Size && previous[r+1][c+1]==1)){
             count++;
         }
         //bottom
-        if(((c)>=0) && ((c)< Size)&&((r+1) >= 0 && (r+1)< Size && Board[r+1][c]==1)){
+        if(((c)>=0) && ((c)< Size)&&((r+1) >= 0 && (r+1)< Size && previous[r+1][c]==1)){
             count++;
         }
         return count;
